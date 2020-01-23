@@ -1,6 +1,7 @@
 from graph import Graph
 from util import Stack, Queue
 
+
 def earliest_ancestor(ancestors, starting_node):
     graph = Graph()
     stack = Stack()
@@ -19,24 +20,24 @@ def earliest_ancestor(ancestors, starting_node):
     # Add starting node to stack
     stack.push(starting_node)
     ancestor = -1
-
+    # go through entire stack
     while stack.size() > 0:
         current = stack.pop()
+        # Go through the list of vertices and add all the parents that the current is a child of.
         for vertex in graph.vertices:
             if current in graph.get_neighbors(vertex) and current not in visited:
                 visited.add(current)
                 stack.push(vertex)
-
+        # update ancestor based on whether or not current changed (has parent)
         if current == starting_node:
             ancestor = -1
         else:
             ancestor = current
-
+    # Return earliest ancestor(if one exists)
     return ancestor
 
-
 # start: 1
-# ancester: 10
+# ancestor: 10
 
 
 '''
@@ -62,16 +63,16 @@ you run through the list without adding to the stack or queue
 # }
 
 
-# test_ancestors = [(1, 3), (2, 3), (3, 6), (5, 6), (5, 7),
-#                   (4, 5), (4, 8), (8, 9), (11, 8), (10, 1)]
-# print(earliest_ancestor(test_ancestors, 1))  # 10
-# print(earliest_ancestor(test_ancestors, 2))  # -1
-# print(earliest_ancestor(test_ancestors, 3))  # 10
-# print(earliest_ancestor(test_ancestors, 4))  # -1
-# print(earliest_ancestor(test_ancestors, 5))  # 4
-# print(earliest_ancestor(test_ancestors, 6))  # 10
-# print(earliest_ancestor(test_ancestors, 7))  # 4
-# print(earliest_ancestor(test_ancestors, 8))  # 4
-# print(earliest_ancestor(test_ancestors, 9))  # 4
-# print(earliest_ancestor(test_ancestors, 10))  # -1
-# print(earliest_ancestor(test_ancestors, 11))  # -1
+test_ancestors = [(1, 3), (2, 3), (3, 6), (5, 6), (5, 7),
+                  (4, 5), (4, 8), (8, 9), (11, 8), (10, 1)]
+print(earliest_ancestor(test_ancestors, 1))  # 10
+print(earliest_ancestor(test_ancestors, 2))  # -1
+print(earliest_ancestor(test_ancestors, 3))  # 10
+print(earliest_ancestor(test_ancestors, 4))  # -1
+print(earliest_ancestor(test_ancestors, 5))  # 4
+print(earliest_ancestor(test_ancestors, 6))  # 10
+print(earliest_ancestor(test_ancestors, 7))  # 4
+print(earliest_ancestor(test_ancestors, 8))  # 4
+print(earliest_ancestor(test_ancestors, 9))  # 4
+print(earliest_ancestor(test_ancestors, 10))  # -1
+print(earliest_ancestor(test_ancestors, 11))  # -1

@@ -112,11 +112,11 @@ class Graph:
                 if last_vertex == destination_vertex:
                     # return Path
                     return vertex_path
-                # Mark it as visited...
+                # Mark it as visited
                 visited.add(last_vertex)
                 # Then add a Path to neighbors to the back of the Queue
                 for neighbor in self.get_neighbors(last_vertex):
-                    # COPY THE PATH
+                    # Copy Path
                     neighbor_path = vertex_path + [neighbor]
                     # Append neighbor to rear.
                     q.enqueue(neighbor_path)
@@ -218,7 +218,7 @@ if __name__ == '__main__':
         1, 2, 4, 6, 3, 5, 7
     '''
     graph.dft(1)
-    graph.dft_recursive(1)
+    # graph.dft_recursive(1)
 
     '''
     Valid BFS path:
@@ -232,4 +232,4 @@ if __name__ == '__main__':
         [1, 2, 4, 7, 6]
     '''
     print(graph.dfs(1, 6))
-    print(graph.dfs_recursive(1, 6))
+    # print(graph.dfs_recursive(1, 6))
